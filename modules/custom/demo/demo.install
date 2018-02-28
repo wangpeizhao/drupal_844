@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Webform module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function demo_uninstall() {
+  
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * Even though Webform's are config entities we need to create a 'webform' table
+ * to track webform submission serial numbers using DB transaction locking.
+ *
+ * @see \Drupal\webform\WebformEntityStorage
+ */
+function demo_schema() {
+  $schema['demo'] = [
+    'description' => 'Stores all demo data.',
+    'fields' => [
+      'demo_id' => [
+        'description' => 'The demo id.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ],
+      'next_serial' => [
+        'description' => 'The serial number to give to the next submission to this demo.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 1,
+      ],
+    ],
+    'primary key' => ['demo_id', 'next_serial'],
+  ];
+  return $schema;
+}

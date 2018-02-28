@@ -1,0 +1,5 @@
+entity.demo.collection:
+  title: 'demos'
+  description: 'Create demos and manage submissions.'
+  parent: system.admin_structure
+  route_name: entity.demo.collection

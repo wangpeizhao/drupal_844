@@ -1,0 +1,39 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+function morelink_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    var_dump($form);
+    exit();
+}
+
+function morelink_form_node_article_form_alter(&$form,&$form_state){var_dump($form);exit();
+	$default_morelink_url = '';
+	$default_morelink_title = '';
+	$form['settings']['morelink_url'] = array(
+		'#type' = 'textfield',
+		'#title' = t('More Link url'),
+		'#maxlength' => 255,
+		'#description' => t('The More Link url of the block as shown to the user'),
+		'#default_value' => $default_morelink_url,
+		'#weight' => -17,
+	);
+}
+
+function morelink_node_article_form_alter(&$form,&$form_state){var_dump($form);
+    exit();
+	$default_morelink_url = '';
+	$default_morelink_title = '';
+	$form['settings']['morelink_url'] = array(
+		'#type' = 'textfield',
+		'#title' = t('More Link url'),
+		'#maxlength' => 255,
+		'#description' => t('The More Link url of the block as shown to the user.'),
+		'#default_value' => $default_morelink_url,
+		'#weight' => -17,
+	);
+}

@@ -1,0 +1,37 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function demo_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'loremipsum' => array(
+      'variables' => array(
+        'source_text' => NULL,
+      ),
+      'template' => 'demo-html',
+    ),
+  );
+  return $variables;
+}
+    
+function demo_form_demo_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+    $form['email']['#description'] = t('Start with + and your country code.');
+}
+
+
+function demo_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+    $form['phone'] = array(
+        '#type' => 'search',
+        '#title' => t('Your phone number'),
+//            '#value' => '',
+        '#weight' => 20
+    );
+}
+    

@@ -1,0 +1,44 @@
+demo.content:
+    path: '/demo'
+    defaults:
+        _controller: '\Drupal\demo\Controller\DemoController::content'
+        _title: 'I am a demo'
+    requirements:
+        _permission: 'access content'
+        
+demo.form:
+  path: '/demo/form'
+  defaults:
+    _form: '\Drupal\demo\Form\DemoForm'
+    _title: 'Demo Form'
+  requirements:
+    _permission: 'access content'
+
+# About
+
+demo.about:
+  path: '/admin/structure/demo/about'
+  defaults:
+    _controller: '\Drupal\demo\Controller\DemoController::about'
+    _title: 'demo: About demo'
+  requirements:
+    _permission: 'access content'
+    
+# Forms
+
+entity.demo.collection:
+  path: '/admin/structure/demo'
+  defaults:
+    _form: '\Drupal\demo\Form\DemoConfigForm'
+    _title: 'Demos'
+  requirements:
+    _permission: 'access content'
+    
+    
+entity.submission.collection:
+  path: '/admin/structure/demo/submissions/manage'
+  defaults:
+    _form: '\Drupal\demo\Form\DemoSubmissionsForm'
+    _title: 'Demos: Submissions'
+  requirements:
+    _custom_access: '\Drupal\demo\Access\DemoAccess::checkSubmissionAccess'

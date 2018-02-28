@@ -1,0 +1,22 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+* Implementation of hook_menu()
+*/
+function hello_world_menu() {
+  $items = array();
+   
+  $items['hello/{variable}'] = array(
+    'title' => 'Hello Test',
+    'route_name' => 'hello_world_page',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+   
+  return $items;
+}

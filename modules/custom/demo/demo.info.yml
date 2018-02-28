@@ -1,0 +1,7 @@
+name: Demo Module
+description: Create a page showing "demo"
+type: module
+package: Custom
+version: 1.0
+core: 8.x
+configure: entity.demo.collection

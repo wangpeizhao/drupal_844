@@ -1,0 +1,18 @@
+#cuddly-slider:
+#  version: 1.x
+#  js:
+#    js/cuddly-slider.js: {}
+#  dependencies:
+#    - core/jquery
+#    - core/drupalSettings
+
+#
+#and
+#
+#In your module call hook_page_attachments_alter(&$build), inside the function call:
+#
+#$build['#attached']['library'][] = 'your_module/library_name';
+#$build['#attached']['drupalSettings']['fluffiness']['cuddlySlider']['foo'] = 'bar';
+#Where 'bar' is some calculated value.
+#
+#Then cuddly-slider.js will be able to access drupalSettings.fluffiness.cuddlySlider.foo (and it will === 'bar').

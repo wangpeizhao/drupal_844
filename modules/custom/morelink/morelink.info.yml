@@ -1,0 +1,17 @@
+name: Morelink
+type: module
+description: 'provide a link for all blocks.'
+package: Custom
+# core: 8.x
+#configure: entity.morelink.collection
+#dependencies:
+#  - 'drupal:field'
+#  - 'drupal:system (>= 8.3)'
+#  - 'drupal:user'
+#  - 'contribute:contribute'
+
+# Information added by Drupal.org packaging script on 2018-02-04
+version: '1.x-5.0-rc3'
+core: '8.x'
+project: 'Morelink'
+datestamp: 1517746089

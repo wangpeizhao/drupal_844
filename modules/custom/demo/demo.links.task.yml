@@ -1,0 +1,5 @@
+demo.about:
+  title: 'About'
+  route_name: demo.about
+  base_route: entity.demo.collection
+  weight: 50
