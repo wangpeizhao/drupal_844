@@ -32,99 +32,113 @@ class DemoConfigForm extends FormBase {
     public function buildForm(array $form, FormStateInterface $form_state) {
         // Add the core AJAX library.
 //    $form['#attached']['library'][] = 'core/drupal.ajax';
-
 //    $config = $this->config('contribute.settings');
-    $form['#attributes'] = ['novalidate' => TRUE];
-    $form['account'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Drupal.org Account'),
-      '#states' => [
-        'visible' => [
-          ':input[name="disable"]' => ['checked' => FALSE],
-        ],
-      ],
-    ];
-    $form['account']['account_type'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Account type'),
-      '#description' => $this->t('Please select the type of Drupal.org account that you use to contribute back to Drupal'),
-      '#options' => [
-        'user' => $this->t('Individual user'),
-        'organization' => $this->t('Organization'),
-      ],
+        $form['#attributes'] = ['novalidate' => TRUE];
+        $form['account'] = [
+            '#type' => 'fieldset',
+            '#title' => $this->t('Drupal.org Account'),
+            '#states' => [
+                'visible' => [
+                    ':input[name="disable"]' => ['checked' => FALSE],
+                ],
+            ],
+        ];
+        $form['account']['account_type'] = [
+            '#type' => 'radios',
+            '#title' => $this->t('Account type'),
+            '#description' => $this->t('Please select the type of Drupal.org account that you use to contribute back to Drupal'),
+            '#options' => [
+                'user' => $this->t('Individual user'),
+                'organization' => $this->t('Organization'),
+            ],
 //      '#default_value' => $config->get('account_type') ?: 'user',
-      '#states' => [
-        'required' => [
-          ':input[name="disable"]' => ['checked' => FALSE],
-        ],
-      ],
-    ];
-    $form['account']['user_id'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Drupal.org user name'),
-      '#description' => $this->t('Please enter your user name. <a href=":href">Create new user account</a>', [':href' => 'https://register.drupal.org/user/register']),
+            '#states' => [
+                'required' => [
+                    ':input[name="disable"]' => ['checked' => FALSE],
+                ],
+            ],
+        ];
+        $form['account']['user_id'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('Drupal.org user name'),
+            '#description' => $this->t('Please enter your user name. <a href=":href">Create new user account</a>', [':href' => 'https://register.drupal.org/user/register']),
 //      '#default_value' => ($config->get('account_type') === 'user') ? $config->get('account_id') : '',
-      '#autocomplete_route_name' => 'contribute.autocomplete',
-      '#autocomplete_route_parameters' => ['account_type' => 'user'],
-      '#states' => [
-        'required' => [
-          ':input[name="account_type"]' => ['value' => 'user'],
-        ],
-        'visible' => [
-          ':input[name="account_type"]' => ['value' => 'user'],
-        ],
-      ],
-    ];
-    $form['account']['organization_id'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Drupal.org organization name'),
-      '#description' => $this->t('Please enter your organization\'s name. <a href=":href">Create new organization</a>', [':href' => 'https://www.drupal.org/node/add/organization']),
+            '#autocomplete_route_name' => 'contribute.autocomplete',
+            '#autocomplete_route_parameters' => ['account_type' => 'user'],
+            '#states' => [
+                'required' => [
+                    ':input[name="account_type"]' => ['value' => 'user'],
+                ],
+                'visible' => [
+                    ':input[name="account_type"]' => ['value' => 'user'],
+                ],
+            ],
+        ];
+        $form['account']['organization_id'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('Drupal.org organization name'),
+            '#description' => $this->t('Please enter your organization\'s name. <a href=":href">Create new organization</a>', [':href' => 'https://www.drupal.org/node/add/organization']),
 //      '#default_value' => ($config->get('account_type') === 'organization') ? $config->get('account_id') : '',
-      '#autocomplete_route_name' => 'contribute.autocomplete',
-      '#autocomplete_route_parameters' => ['account_type' => 'organization'],
-      '#states' => [
-        'required' => [
-          ':input[name="account_type"]' => ['value' => 'organization'],
-        ],
-        'visible' => [
-          ':input[name="account_type"]' => ['value' => 'organization'],
-        ],
-      ],
-    ];
+            '#autocomplete_route_name' => 'contribute.autocomplete',
+            '#autocomplete_route_parameters' => ['account_type' => 'organization'],
+            '#states' => [
+                'required' => [
+                    ':input[name="account_type"]' => ['value' => 'organization'],
+                ],
+                'visible' => [
+                    ':input[name="account_type"]' => ['value' => 'organization'],
+                ],
+            ],
+        ];
 
-    $form['warning'] = [
-      '#type' => 'container',
-      '#markup' => '<strong>' . $this->t('Are you sure that you want to hide contribution information?') . '</strong><br/>' .
-      $this->t('Contribute information will only be configurable from the <a href=":href">Extend</a> page.', [':href' => Url::fromRoute('system.modules_list')->toString()]),
-      '#attributes' => ['class' => ['messages messages--warning']],
-      '#states' => [
-        'visible' => [
-          ':input[name="disable"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-    $form['disable'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t("Do not display contribution information"),
+        $form['warning'] = [
+            '#type' => 'container',
+            '#markup' => '<strong>' . $this->t('Are you sure that you want to hide contribution information?') . '</strong><br/>' .
+            $this->t('Contribute information will only be configurable from the <a href=":href">Extend</a> page.', [':href' => Url::fromRoute('system.modules_list')->toString()]),
+            '#attributes' => ['class' => ['messages messages--warning']],
+            '#states' => [
+                'visible' => [
+                    ':input[name="disable"]' => ['checked' => TRUE],
+                ],
+            ],
+        ];
+        $form['disable'] = [
+            '#type' => 'checkbox',
+            '#title' => $this->t("Do not display contribution information"),
 //      '#default_value' => !$config->get('status'),
-      '#return_value' => TRUE,
-    ];
+            '#return_value' => TRUE,
+        ];
 
-    $form['actions'] = ['#type' => 'actions'];
-    $form['actions']['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Save'),
-      '#button_type' => 'primary',
-    ];
-    $form['actions']['delete'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Clear'),
-      '#attributes' => [
-        'class' => ['button--danger'],
-      ],
-    ];
+        $form['actions'] = ['#type' => 'actions'];
+        $form['actions']['submit'] = [
+            '#type' => 'submit',
+            '#value' => $this->t('Save'),
+            '#button_type' => 'primary',
+        ];
+        $form['actions']['delete'] = [
+            '#type' => 'submit',
+            '#value' => $this->t('Clear'),
+            '#attributes' => [
+                'class' => ['button--danger'],
+            ],
+        ];
 
-    return $form;
+//    return $form;
+        $config = $this->config('example.settings');
+
+        $form['example_thing'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Things'),
+            '#default_value' => $config->get('example_thing'),
+        );
+
+        $form['other_things'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Other things'),
+            '#default_value' => $config->get('other_things'),
+        );
+
+        return parent::buildForm($form, $form_state);
     }
 
     /**
@@ -150,6 +164,18 @@ class DemoConfigForm extends FormBase {
 //        ww($values);
         drupal_set_message($this->t('Your email address is @email', array('@email' => $values['email'])));
         $this->configuration['demo_block_email_name'] = $form_state->getValue('email');
+
+
+        // Retrieve the configuration
+//        $this->configFactory->getEditable('example.settings')
+//                // Set the submitted configuration setting
+//                ->set('example_thing', $form_state->getValue('example_thing'))
+//                // You can set multiple configurations at once by making
+//                // multiple calls to set()
+//                ->set('other_things', $form_state->getValue('other_things'))
+//                ->save();
+
+
 //        
     }
 

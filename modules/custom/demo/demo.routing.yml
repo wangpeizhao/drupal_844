@@ -42,3 +42,11 @@ entity.submission.collection:
     _title: 'Demos: Submissions'
   requirements:
     _custom_access: '\Drupal\demo\Access\DemoAccess::checkSubmissionAccess'
+    
+#example.settings:
+#  path: '/admin/structure/example/settings'
+#  defaults:
+#    _form: '\Drupal\example\Form\exampleSettingsForm'
+#    _title: 'example'
+#  requirements:
+#    _permission: 'administer site configuration'
