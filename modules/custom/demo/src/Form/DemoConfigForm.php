@@ -13,17 +13,26 @@
 
 namespace Drupal\demo\Form;
 
-use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
-class DemoConfigForm extends FormBase {
+class DemoConfigForm extends ConfigFormBase {
 
     /**
      * {@inheritdoc}.
      */
     public function getFormId() {
         return 'demo_config_form';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEditableConfigNames() {
+        return [
+            'demo.settings',
+        ];
     }
 
     /**
@@ -124,7 +133,7 @@ class DemoConfigForm extends FormBase {
         ];
 
 //    return $form;
-        $config = $this->config('example.settings');
+        $config = $this->config('demo.settings');
 
         $form['example_thing'] = array(
             '#type' => 'textfield',
@@ -137,7 +146,7 @@ class DemoConfigForm extends FormBase {
             '#title' => $this->t('Other things'),
             '#default_value' => $config->get('other_things'),
         );
-
+return $form;
         return parent::buildForm($form, $form_state);
     }
 
@@ -146,7 +155,7 @@ class DemoConfigForm extends FormBase {
      */
     public function validateForm(array &$form, FormStateInterface $form_state) {
         $values = $form_state->getValues();
-        if (strpos($values['email'], '.com') === FALSE) {
+        if (!empty($values['email']) && strpos($values['email'], '.com') === FALSE) {
 //            $this->setFormError('email', $form_state, $this->t('This is not a .com email address.'));
             drupal_set_message($this->t('This is not a .com email address.'), 'error');
             return false;
@@ -162,21 +171,19 @@ class DemoConfigForm extends FormBase {
 //        parent::submitForm($form, $form_state);
         $values = $form_state->getValues();
 //        ww($values);
-        drupal_set_message($this->t('Your email address is @email', array('@email' => $values['email'])));
-        $this->configuration['demo_block_email_name'] = $form_state->getValue('email');
+        drupal_set_message($this->t('Your email address is @email', array('@email' => $values['phone'])));
+        $this->configuration['demo_block_email_name'] = $form_state->getValue('phone');
 
 
         // Retrieve the configuration
-//        $this->configFactory->getEditable('example.settings')
-//                // Set the submitted configuration setting
-//                ->set('example_thing', $form_state->getValue('example_thing'))
-//                // You can set multiple configurations at once by making
-//                // multiple calls to set()
-//                ->set('other_things', $form_state->getValue('other_things'))
-//                ->save();
-
-
-//        
+        $this->configFactory->getEditable('demo.settings')
+                // Set the submitted configuration setting
+                ->set('example_thing', 'example_thing')
+                // You can set multiple configurations at once by making
+                // multiple calls to set()
+                ->set('other_things', 'other_things')//$form_state->getValue('other_things')
+                ->save();
+        
     }
 
 }
