@@ -11,3 +11,7 @@
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+/sites/default/css/
+/sites/default/js/
+/sites/default/php/
